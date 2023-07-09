@@ -8,6 +8,9 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 import "react-datepicker/dist/react-datepicker.css";
 import NavbarHorizental from "../../Componenets/NavbarHorizental";
 import MenuVertical from "../../Componenets/MenuVertical";
+import AddReser from "../../Componenets/AddReser";
+import {Button} from "react-bootstrap";
+import {PlusIcon} from "@heroicons/react/24/solid";
 
 
 const locales = {
@@ -42,6 +45,7 @@ const events = [
 ];
 function CalendarPage() {
     const [forceOpen, setForceOpen] = useState(false);
+
     const onSelectEvent = (e: any) => {
         console.log(e);
         // setValue("title", e.title);
@@ -49,13 +53,23 @@ function CalendarPage() {
         // setValue("endDate", timestampToDatetimeInputString(e.end.getTime()));
         // setForceOpen(true);
     };
+    const [showSidebar, setShowSidebar] = useState(false);
+
     return(
         <>  <main className="contents">
             <NavbarHorizental/>
             <MenuVertical/>
 
-            <div className="py-12 px-5 container mt-5 ">
+                <div className="py-12 px-5 container mt-5 ">
+                    <div className="flex justify-between mb-3 items-center">
+                        <Button onClick={() => setShowSidebar(!showSidebar)} variant="success"  >
+                            <div style={{ display: 'flex', alignItems: 'center' }}>
 
+                                <PlusIcon className="h-6 font-semibold shadow-sm " />
+                                <span span style={{ fontSize: '10px'  }}>NOUVEAU Reservation</span>
+                            </div>
+                        </Button>
+                    </div>
                 <Calendar
                     localizer={localizer}
                     selectable
@@ -78,6 +92,10 @@ function CalendarPage() {
                     style={{color:"green",
                         height: "90vh" }}
                 />
+                    <div style={{ display: 'flex', position: 'relative' }}>
+                        {showSidebar && (<AddReser/>)}
+
+                    </div>
 
             </div>
 

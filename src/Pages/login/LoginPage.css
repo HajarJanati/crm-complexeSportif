@@ -7,31 +7,37 @@
 }
 .text-gray-600 {
     --tw-text-opacity: 1;
-    color: rgb(117 117 117 / var(--tw-text-opacity));
-
+    color: rgba(117, 117, 117, 1);
 }
 p a{
     text-decoration: none;
     --tw-text-opacity: 1;
-    color: rgb(117 117 117 / var(--tw-text-opacity));
+    color: rgb(117 117 117 / 1);
 }
 p a:hover {
     --tw-text-opacity: 1;
-    color: rgb(117 117 117 / var(--tw-text-opacity));
+    color: rgb(89 206 114 /1);
     text-decoration: underline;
 }
 label{
-    color: darkolivegreen;
+    color: grey;
 }
-label:focus{
-    color: #8ade7d;
 
-}
-form input{
-    border-color: #125407;
-    box-shadow: darkgreen;
+.form-control:focus{
+    border-color: #3f9d57;
+    box-shadow: #88ad45;
+
 }
 button{
     width: 150px;
-     height: 35px;
+    height: 40px;
+}
+
+
+
+button:focus {
+    background-color: #3f9d57;
+    box-shadow: #88ad45;
+    border-color: #88ad45;
+
 }

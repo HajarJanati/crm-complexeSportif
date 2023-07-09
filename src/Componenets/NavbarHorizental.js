@@ -1,5 +1,6 @@
 import React from "react";
 import { Navbar, Nav } from 'react-bootstrap';
+import { BellIcon } from "@heroicons/react/24/solid";
 
 
 
@@ -20,16 +21,17 @@ const NavbarHorizental = () => {
                 </div>
 
                 <Nav className="ml-auto">
-                    <Nav.Link href="#notification">
-                        <i className="bi bi-bell"></i>
+                    <Nav.Link href="/dashbord">
+                        <BellIcon className="h-6 text-gray-700 cursor-pointer" />
                     </Nav.Link>
-                    <Nav.Link href="#login">
+                    <Nav.Link href="/EditProfil">
                         <img
                             src="/icons/logo-dash.png"
                             className="h-12 cursor-pointer object-contain absolute inset-y-5 right-0 w-16"
                             alt=""
                             placement="left"
                         />
+
                     </Nav.Link>
                 </Nav>
             </header>

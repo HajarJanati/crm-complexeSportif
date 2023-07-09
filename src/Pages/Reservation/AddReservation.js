@@ -5,7 +5,13 @@ import {Button} from "react-bootstrap";
 import {PlusIcon} from "@heroicons/react/24/solid";
 import NavbarHorizental from "../../Componenets/NavbarHorizental";
 import MenuVertical from "../../Componenets/MenuVertical";
-
+import AddUser from "../../Componenets/AddUser";
+import AddReser from "../../Componenets/AddReser";
+import UpdateReservation from "../../Componenets/UpdateReservation"
+import {
+    TrashIcon,
+    PencilIcon,
+} from "@heroicons/react/24/solid";
 
 const AddReservations = () => {
     const customStyles={
@@ -34,116 +40,67 @@ const AddReservations = () => {
 
         },
         {
-            name: 'VENUE',
+            name: 'TERRAIN',
             selector:row => row.venue,
 
         },
         {
             name: 'COMMERCER A',
             selector:row => row.commerce,
-        },  {
-            name: 'SOURCE',
-            selector:row => row.source
-        },
+        },  
         {
             name: 'STATUS',
-            selector:row => row.status
+            cell: () => 'Confirmer',
         }, {
             name: 'OPTIONS',
-            selector:row => row.option
+            cell: () => (
+                <div className="flex">
+                    <PencilIcon
+                        onClick={() => setShowUpdatebar(!showSidebar)}
+                        className="h-6 cursor-pointer text-green-500"
+                    />
+                    <TrashIcon
+                        className="h-6 cursor-pointer text-red-500"
+                    />
+                </div>
+            ),
         },
     ]
     const data=[
 
         {
             id: 1,
-            client: 'hajar',
-            venue: 'Olimpico',
-            commerce: '23/05/2002 10:22',
-            source: 'CHIMATCH',
-            status: 'en attende',
-            option: 'v'
-
-        },  {
-            id: 2,
-            client: 'mehdi',
-            venue: 'Olimpico',
-            commerce: '23/05/2002 10:22',
-            source: 'local',
-            status: 'en attende',
-            option: 'v'
-
-        }, {
-            id: 3,
-            client: 'radia',
-            venue: 'Olimpico',
-            commerce: '23/05/2002 10:22',
-            source: 'CHIMATCH',
-            status: 'en attende',
-            option: 'v'
-
-        }, {
-            id: 4,
-            client: 'hajar',
-            venue: 'Olimpico',
-            commerce: '23/05/2002 10:22',
-            source: 'CHIMATCH',
-            status: 'en attende',
-            option: 'v'
-
-        }, {
-            id: 5,
-            client: 'mehdi',
-            venue: 'Olimpico',
-            commerce: '23/05/2002 10:22',
-            source: 'CHIMATCH',
-            status: 'en attende',
-            option: 'v'
-
-        }, {
-            id: 6,
-            client: 'hajar',
-            venue: 'Olimpico',
-            commerce: '23/05/2002 10:22',
-            source: 'CHIMATCH',
-            status: 'en attende',
-            option: 'v'
-
-        }, {
-            id: 7,
-            client: 'hajar',
-            venue: 'Olimpico',
-            commerce: '23/05/2002 10:22',
-            source: 'CHIMATCH',
-            status: 'en attende',
-            option: 'v'
-
-        }, {
-            id: 8,
-            client: 'radia',
-            venue: 'Olimpico',
-            commerce: '23/05/2002 10:22',
-            source: 'CHIMATCH',
-            status: 'en attende',
-            option: 'v'
-
-        }, {
-            id: 9,
             client: 'wafa',
             venue: 'Olimpico',
             commerce: '23/05/2002 10:22',
-            source: 'CHIMATCH',
-            status: 'en attende',
-            option: 'v'
 
-        }, {
-            id: 10,
-            client: 'hajar',
+
+
+        },
+        {
+            id: 2,
+            client: 'radia',
             venue: 'Olimpico',
             commerce: '23/05/2002 10:22',
-            source: 'CHIMATCH',
-            status: 'en attende',
-            option: 'v'
+
+
+
+        },
+        {
+            id: 3,
+            client: 'mehdi',
+            venue: 'Olimpico',
+            commerce: '23/05/2002 10:22',
+
+
+
+        }, {
+            id: 4,
+            client: 'mohamed',
+            venue: 'Olimpico',
+            commerce: '23/05/2002 10:22',
+
+
 
         },
     ]
@@ -154,17 +111,20 @@ const AddReservations = () => {
         })
         setRecords(newData)
     }
+    const [showSidebar, setShowSidebar] = useState(false);
+    const [showUpdatebar, setShowUpdatebar] = useState(false);
+
     return(
         <main className="contents">
             <NavbarHorizental/>
             <MenuVertical/>
         <div className=" py-12 px-5 container mt-5 ">
             <div className="flex justify-between mb-3 items-center">
-                <Button variant="success"  >
+                <Button onClick={() => setShowSidebar(!showSidebar)} variant="success"  >
                     <div style={{ display: 'flex', alignItems: 'center' }}>
 
                         <PlusIcon className="h-6 font-semibold shadow-sm " />
-                        <span>NOUVEAU Reservation</span>
+                        <span style={{ fontSize: '10px'  }}>NOUVEAU RESERVATION</span>
                     </div>
                 </Button>
                 <div>
@@ -176,9 +136,17 @@ const AddReservations = () => {
                 className="border "
                 data={records}
                 customStyles={customStyles}
-                fixedHeader
                 pagination
             ></DataTable>
+
+            <div style={{ display: 'flex', position: 'relative' }}>
+                {showSidebar && (<AddReser/>)}
+
+            </div>
+            <div style={{ display: 'flex', position: 'relative' }}>
+                {showUpdatebar && (<UpdateReservation/>)}
+            </div>
+
         </div>
         </main>
     )
